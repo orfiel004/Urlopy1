@@ -9,7 +9,7 @@
 
   if($connection->connect_errno!=0)
   {
-    echo "Error".$connection->connect_errno." Opis ".$connectio->connect_error;
+    echo "Error".$connection->connect_errno; //." Opis ".$connection->connect_error;
   }
   else
   {
