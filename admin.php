@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany']==true))
+{
+  header('Location: admin_panel.php');
+  // zeby nie wykonywać niepotrzebnie całego kodu
+  exit();
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -10,22 +17,18 @@ session_start();
 </head>
 
 <body>
-  USER<br/><br/><br/>
-  Połóż kartę<br/><br/>
+  ADMIN<br/><br/><br/>
 
-  <form action="zaloguj_user.php" method="post">
+
+  <form action="zaloguj_admin.php" method="post">
 
     Login: <br/> <input type="text" name="login" <br/><br/>
+    Hasło: <br/> <input type="password" name="haslo" <br/><br/>
 
     <input type="submit" value="Zaloguj">
 
+
   </form>
-  <!-- logowanie bez przycisku -->
-  <!-- <form action="zaloguj_user.php" method="post">
-
-    <input type="hidden" name="nazwa" value="wartość">
-
-  </form> -->
   <?php
   // isset sprawdzi czy ta zmienna jest ustawiona i tylko jesli jest to ją wyświetli
   if (isset($_SESSION['error'])) echo $_SESSION['error'];
