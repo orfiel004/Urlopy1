@@ -19,23 +19,24 @@
 
     $sql = "SELECT * FROM Users WHERE name='$login'";
 
-    if ($rezult = @$connection->query($sql))
+    if ($result = @$connection->query($sql))
     {
-      $ilu_userow = $rezult->num_rows;
-      if ($ilu_userow>0) {
+      $users = $result->num_rows;
+      if ($users=1) {
 
-        $row = $rezult->fetch_assoc();
+        $row = $result->fetch_assoc();
         $_SESSION['id_user'] = $row['id_user'];
         $_SESSION['name'] = $row['name'];
         $_SESSION['surname'] = $row['surname'];
         $_SESSION['position'] = $row['position'];
         $_SESSION['phone'] = $row['phone'];
         $_SESSION['days_used'] = $row['days_used'];
+        
 
 // jeśli udało się zalogować to dla porządku usuwamy zmienną błądebug
         unset($_SESSION['error']);
 
-        $rezult->close();
+        $result->close();
         header('Location: user_panel.php');
 
       }else {
