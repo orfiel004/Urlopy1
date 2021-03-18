@@ -26,21 +26,21 @@
 
     $sql = "SELECT * FROM Admin WHERE name='$login' AND password='$haslo'";
 
-    if ($rezult = @$connection->query($sql))
+    if ($result = @$connection->query($sql))
     {
-      $ilu_userow = $rezult->num_rows;
+      $ilu_userow = $result->num_rows;
       if ($ilu_userow>0) {
 
         //flaga zalogowania
         $_SESSION['zalogowany'] = true;
 
-        $row = $rezult->fetch_assoc();
+        $row = $result->fetch_assoc();
         $_SESSION['id'] = $row['id'];
         $_SESSION['name'] = $row['name'];
         $_SESSION['password'] = $row['password'];
         $_SESSION['privileges'] = $row['privileges'];
 
-        $rezult->close();
+        $result->close();
         header('Location: admin_panel.php');
 
       }else {
@@ -52,7 +52,10 @@
 
     }
 
-
+    $sqlholidays = "SELECT * FROM Holidays_status";
+    $holidays= @$connection->query($sqlholidays);
+    $holidaysarray = $holidays->fetch_all();
+    $_SESSION['htable'] = $holidaysarray;
 
     $connection->close();
   }
