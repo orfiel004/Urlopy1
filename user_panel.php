@@ -31,12 +31,65 @@ session_start();
   background-color: #4CAF50;
   color: white;
 }
+#container {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#worker {
+  background-color: #D4DADE;
+  padding: 5px
+}
+#calendar {
+  background-color: #EAE6E1;
+  float: left;
+  width: 480px;
+  height: 30px;
+  padding: 10px;
+}
+#formulage {
+  background-color: #C1BBB7;
+  width: 480px;
+  height: 30px;
+  float: left;
+  padding: 10px;
+}
+#history {
+  background-color: #FAFAF2;
+  width: 980px;
+  height: 30px;
+  clear: both;
+  padding: 10px;
+}
 
   </style>
-  <title>Aplikacja urlopowa</title>
+  <title> Aplikacja urlopowa</title>
 </head>
 <body>
-	<h1> Witaj </h1>
+  <div id= "container">
+    Container
+
+    <div id="worker">
+      <?php
+    echo  "<h1>Pracownik: </h1>";
+      ?>
+    </div>
+
+    <div id="calendar">
+      <h2>Kalendarz</h2>
+    </div>
+
+    <div id="formulage">
+      Formularz
+    </div>
+
+    <div id="history">
+      Historia urlopowa
+    </div>
+
+  </div>
+
+
 
 
   <?php
@@ -58,9 +111,24 @@ session_start();
   //   echo .$_SESSION[];
   // }
   // echo .$_SESSION['row'];
+// echo $_SESSION['num'];
 
+
+$nickname = $_SESSION['table'];
+// echo count($nickname);
+// echo $nickname[0];
+// echo $nickname(0);
+// echo $nickname('name');
+// echo $_SESSION['table']['name'];
+$test = array_keys($nickname);
+foreach ($test as $x) {
+   echo "<td>$x</td>";
+}
+
+// echo array_keys($_SESSION['table']);
 echo '<table id="users">';
 echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th><th>Position</th><th>Phone</th><th>Used dayes</th></tr>";
+
 
    foreach ($_SESSION['table'] as $value){
      echo "<tr>";
@@ -74,6 +142,9 @@ echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th><th>Position</th><th>Pho
    echo "</table>";
 
   ?>
+
+
+
 </body>
 
 </html>

@@ -17,24 +17,24 @@
     $login = $_POST['login'];
 
 
-    $sql = "SELECT * FROM Users";
-    // $sql = "SELECT * FROM Users WHERE name='$login'";
+    // $sql = "SELECT * FROM Users";
+    $sql = "SELECT * FROM Users WHERE name='$login'";
 
     if ($result = @$connection->query($sql))
     {
       $users = $result->num_rows;
-      if ($users>0) {
+      if ($users=1) {
 
-        $row = $result->fetch_all();
-        $_SESSION['id_user'] = $row['id_user'];
-        $_SESSION['name'] = $row['name'];
-        $_SESSION['surname'] = $row['surname'];
-        $_SESSION['position'] = $row['position'];
-        $_SESSION['phone'] = $row['phone'];
-        $_SESSION['days_used'] = $row['days_used'];
+        $row = $result->fetch_array(MYSQLI_NUM);
+        // $_SESSION['id_user'] = $row['id_user'];
+        // $_SESSION['name'] = $row[1];
+        // $_SESSION['surname'] = $row['surname'];
+        // $_SESSION['position'] = $row['position'];
+        // $_SESSION['phone'] = $row['phone'];
+        // $_SESSION['days_used'] = $row['days_used'];
 
         $_SESSION['num']= $users;
-        // $table = array("Adam","Ewa","Pawel");
+        // $table1 = array("Adam","Ewa","Pawel");
         $_SESSION['table'] = $row;
 
 
