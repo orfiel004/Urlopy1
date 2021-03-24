@@ -66,12 +66,16 @@ session_start();
   <title> Aplikacja urlopowa</title>
 </head>
 <body>
+  <?php
+    $nickname = $_SESSION['table'][0]['name'];
+   ?>
   <div id= "container">
     Container
 
     <div id="worker">
       <?php
-    echo  "<h1>Pracownik: </h1>";
+      echo  "<h1>Pracownik: ".$_SESSION['table'][0]['name']." ".$_SESSION['table'][0]['surname']. "</h1>";
+
       ?>
     </div>
 
@@ -114,18 +118,21 @@ session_start();
 // echo $_SESSION['num'];
 
 
-$nickname = $_SESSION['table'];
-// echo count($nickname);
-// echo $nickname[0];
+// $nickname = $_SESSION['table'][0]['name'];;
+// echo $nickname[0]['name'];
 // echo $nickname(0);
 // echo $nickname('name');
-// echo $_SESSION['table']['name'];
-$test = array_keys($nickname);
-foreach ($test as $x) {
-   echo "<td>$x</td>";
-}
+ // $roww = $_SESSION['table'];
+// echo $roww['surname'];
+// $test = array_keys($nickname);
+// foreach ($test as $x) {
+//    echo "<td>$x</td>";
+// }
 
 // echo array_keys($_SESSION['table']);
+
+
+
 echo '<table id="users">';
 echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th><th>Position</th><th>Phone</th><th>Used dayes</th></tr>";
 

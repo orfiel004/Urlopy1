@@ -18,14 +18,14 @@
 
 
     // $sql = "SELECT * FROM Users";
-    $sql = "SELECT * FROM Users WHERE name='$login'";
+    $sql = "SELECT * FROM Users ";
 
     if ($result = @$connection->query($sql))
     {
       $users = $result->num_rows;
       if ($users=1) {
 
-        $row = $result->fetch_array(MYSQLI_NUM);
+        $row = $result->fetch_all(MYSQLI_ASSOC);
         // $_SESSION['id_user'] = $row['id_user'];
         // $_SESSION['name'] = $row[1];
         // $_SESSION['surname'] = $row['surname'];
