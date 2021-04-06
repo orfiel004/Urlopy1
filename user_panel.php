@@ -8,8 +8,11 @@ session_start();
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
   <style>
-  #users {
+  /* #users {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -44,7 +47,7 @@ session_start();
   background-color: #EAE6E1;
   float: left;
   width: 480px;
-  height: 30px;
+  height: 300px;
   padding: 10px;
 }
 #formulage {
@@ -61,7 +64,7 @@ session_start();
   clear: both;
   padding: 10px;
 }
-
+ */
   </style>
   <title> Aplikacja urlopowa</title>
 </head>
@@ -81,10 +84,62 @@ session_start();
 
     <div id="calendar">
       <h2>Kalendarz</h2>
+
+      <div class="rangePicker" style="width: 400px">
+        <form>
+
+
+        <input type="text" id="picker" class="form-control" >
+        <br>
+        <input type="submit" value="Wyślij wniosek urlopowy" />
+        </form>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+      <script>
+
+
+      $('#picker').daterangepicker({
+        inline: true,
+        alwaysShowCalendars: true,
+        minDate: moment().millisecond(0).second(0).minute(0).hour(0),
+
+
+    });
+
+
+      </script>
+
+      <!-- <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+
+      <script>
+      $(function() {
+        $('input[name="daterange"]').daterangepicker({
+          opens: 'left'
+        }, function(start, end, label) {
+          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        });
+      });
+      </script> -->
+
     </div>
 
     <div id="formulage">
-      Formularz
+      <div onload="ustawionana()"></div>
+      Formularz <br>
+      Zasieg dat <br>
+      <?php
+        $dataRange = ['picker'];
+        // foreach ($dataRange as  $value) {
+        //   echo $value;
+        // }
+
+        ?>
+
     </div>
 
     <div id="history">
@@ -137,6 +192,7 @@ echo '<table id="users">';
 echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th><th>Position</th><th>Phone</th><th>Used dayes</th></tr>";
 
 
+
    foreach ($_SESSION['table'] as $value){
      echo "<tr>";
 
@@ -149,7 +205,6 @@ echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th><th>Position</th><th>Pho
    echo "</table>";
 
   ?>
-
 
 
 </body>
