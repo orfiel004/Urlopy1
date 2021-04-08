@@ -16,9 +16,7 @@
 
     $login = $_POST['login'];
 
-
-    // $sql = "SELECT * FROM Users";
-    $sql = "SELECT * FROM Users ";
+    $sql = "SELECT * FROM Users WHERE name='$login'";
 
     if ($result = @$connection->query($sql))
     {
